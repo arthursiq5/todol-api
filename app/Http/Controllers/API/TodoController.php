@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Todo;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -14,7 +15,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        $todos = Todo::all();
+        return response()->json($todos, 200);
     }
 
     /**
@@ -25,7 +27,8 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $todo = Todo::create($request->all());
+        return response()->json($todo, 200);
     }
 
     /**
@@ -36,7 +39,8 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        //
+        $todo = Todo::findOrFail($id);
+        return response()->json($todo, 200);
     }
 
     /**
